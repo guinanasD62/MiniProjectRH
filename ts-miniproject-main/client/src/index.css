@@ -1,0 +1,54 @@
+
+
+/* import bootstrap to set changes */
+@import '~bootstrap/scss/bootstrap';
+
+.wrapper{
+    display: flex;
+}
+
+.login-container{
+    display: flex ;
+    /* margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px; */
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+
+.container {
+    background-color: #f8f9fa; /* Light grey background */
+    color: #495057; /* Dark grey color for text */
+  }
+  
+  .form-control {
+    border: 1px solid #ced4da;
+    color: #495057;
+  }
+  
+  .btn-outline-light {
+    border: 1px solid #ced4da;
+    color: #495057;
+  }
+  
+  .btn-outline-light:hover {
+    border: 1px solid #adb5bd;
+    color: #6c757d;
+  }
+  
+  /* Additional styles for spacing */
+  .form-label, .form-control, .btn {
+    margin-bottom: 1rem; /* Space out elements */
+  }
+  
+  /* Center the form in the middle of the page with more margin */
+  #root {
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use full view height to center vertically */
+  }

@@ -1,0 +1,78 @@
+/* Add this to your existing CSS file */
+
+/* Style for the user actions column to keep buttons aligned */
+.user-actions {
+    display: flex;
+    gap: 10px; /* This will add space between your buttons */
+  }
+  
+  /* Styles to make the buttons have equal width */
+  .user-actions button {
+    flex: 1; /* Each button will take up equal space */
+  }
+  
+  /* Additional styles for table responsiveness and visual improvements */
+  .table-responsive {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding: 10%    ;
+    background-color: transparent;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+  }
+  
+  /* Override Bootstrap styles for pagination to match your design */
+  .pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+  }
+  
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .page-link {
+    position: relative;
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    margin-left: -1px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .btn-primary {
+   background-color: #6798e1;
+  }
+  .btn-success {
+    background-color: rgb(133, 193, 128);
+  }
+  .btn-danger {
+    background-color: rgb(241, 69, 6);
+  }

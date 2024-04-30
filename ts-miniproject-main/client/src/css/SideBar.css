@@ -1,0 +1,52 @@
+/* Sidebar.css */
+.sidebar {
+    background-color: #0f457b;
+    min-height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Fixed sidebar width */
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-head {
+    margin-top: 90%;
+  }
+  
+  .nav-item {
+    
+    border-bottom: 1px solid #e1e1e1; /* Add separation between items */
+  }
+  
+  .nav-item a {
+    display: block; /* Make the links fill the li for larger clickable area */
+    padding: 20px 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500; /* Slightly bolder font for better readability */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-item a:hover, .nav-item a.active {
+    background-color: #dae0e5;
+    border-left: 3px solid #007bff;
+    color: #007bff;
+  }
+  
+  /* Additional responsive styling if needed */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      min-height: 50px;
+    }
+  
+    .nav-item a {
+      padding: 10px 15px;
+      text-align: center;
+    }
+  }
+      

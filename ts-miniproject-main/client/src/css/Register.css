@@ -1,0 +1,188 @@
+/* Register.css */
+body, input, button {
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box; /* Helps manage padding and margins */
+}
+button {
+margin-top: 5%;
+margin-bottom: 5%;
+ }
+
+ /* Updated styles for the #root */
+#root {
+  display: flex;
+  flex-direction: row; /* Align children side by side */
+  min-height: 100vh;
+  background: #f7f7f7;
+  align-items: flex-start; /* Align items to the top */
+  padding-top: 0; /* Remove padding-top if there's a fixed navbar */
+}
+
+
+.register-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px; /* Wider form for better spacing */
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem; /* Larger font size for the heading */
+}
+h4 {
+  text-align: left;
+  color: #ece5e5;
+  margin-bottom: 30px;
+  font-size: 2rem; /* Larger font size for the heading */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1rem; /* Standard font size for form labels */
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-bottom: 1.5rem; /* Increased margin-bottom for more space between fields */
+  font-size: 1rem; /* Standard font size for inputs */
+  background-color: #f7f7f7; /* Light background for inputs */
+  color: #495057; /* Darker text for better readability */
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  position: absolute;
+  top: 20px; /* Show the error message at the top of the page */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  width: 80%; /* Error message width */
+  text-align: center;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px; /* Space above the buttons */
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Primary blue color for the main button */
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem; /* Larger font size for buttons */
+  transition: background-color 0.15s ease-in-out; /* Smooth transition for button hover effect */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover for the primary button */
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  color: #007bff; /* Matching the primary button color for coherence */
+  border: 2px solid #007bff; /* Solid border for outlined button */
+  margin-top: 0; /* No space above this secondary button */
+}
+
+.btn-outline-light:hover {
+  background-color: #e2e6ea; /* Light background on hover for the secondary button */
+}
+
+.ToastContainer {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 30px;
+  }
+}
+
+.Toastify__toast {
+  min-width: 250px; /* Adjust as needed */
+  white-space: nowrap; /* Ensures text doesn't wrap to the next line */
+  overflow: hidden; /* Keeps the text from overflowing the toast */
+  text-overflow: ellipsis; /* Adds an ellipsis if the text is too long */
+}
+
+/* If you also want to adjust the positioning and width of the toast container: */
+.Toastify__toast-container--top-center {
+  width: auto; /* Adjust width to fit content */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+/* Styles for the sidebar */
+.sidebar {
+  flex: 0 0 250px; /* Do not grow, do not shrink, fixed width of 250px */
+  height: 100vh; /* Full height */
+
+  background-color: #0e7398; /* Or any color that fits your design */
+  width: 250px; /* Fixed width for the sidebar */
+  min-height: 100vh; /* Full height */
+  box-shadow: 2px 0 5px rgba(91, 3, 99, 0.1); /* Optional: adds some shadow for depth */
+}
+
+/* Styles for the main content area */
+.flex-grow-1 {
+  flex-grow: 1; /* Takes up the remaining space */
+  padding: 1rem; /* Adjust the padding as needed */
+  overflow-y: auto; /* In case the content overflows vertically */
+}
+
+/* Ensure the Navbar is fixed at the top */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* Ensure it's above other items */
+}
+
+/* Add some top padding to the content to ensure it's not hidden behind the fixed Navbar */
+.flex-grow-1.p-3 {
+  padding-top: 900px; /* Adjust based on the height of your Navbar */
+}
+
+/* Update or remove styles for .d-flex if necessary */
+.d-flex {
+  display: flex;
+  flex-direction: row; /* Ensures flex items are laid out horizontally */
+  width: 100%; /* Ensure it spans the full width */
+}
+
+
+
+
+/* Ensure the main content area takes the remaining space */
+.flex-grow-1 {
+  flex-grow: 1; /* Grow to fill up remaining space */
+  padding: 1rem; /* Keep the padding */
+  /* Remove padding-top if navbar is fixed */
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Your other styles for the navbar */
+}
