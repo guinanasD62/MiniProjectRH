@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import SubmitButton from '../buttons/submitButton';
+import SubmitButton from '../feature/submitButton';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Register.css';
 
@@ -30,6 +30,7 @@ const Register: React.FC = () => {
       const response = await axios.post('http://localhost:3000/auth/register', userData);
       if (response.status === 200) {  
         navigate('/'); 
+//to route to login
       } else {
         throw new Error('Unexpected response');
       }

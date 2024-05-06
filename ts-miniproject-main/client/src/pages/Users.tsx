@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import  debounce  from 'debounce';
+import debounce from 'debounce';
 import Loan from './LoanModal';
-import '../css/table.css'
+import '../css/table.css';
+import UserSkeleton from '../feature/skeletonUser';
+//import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 type User = {
   _id: string;
@@ -19,17 +22,21 @@ const Users: React.FC = () => {
   const [totalUsers, setTotalUsers] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(5);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Added loading state
 
   useEffect(() => {
     const fetchUsers = async () => {
+      setLoading(true); // Start loading before fetching
       try {
         const response = await axios.get('http://localhost:3000/auth/users', {
           params: { search: searchTerm, page: currentPage, limit: pageSize }
         });
         setUsers(response.data.users);
         setTotalUsers(response.data.total);
+        setLoading(false); // Stop loading after fetching
       } catch (error) {
         console.error('Error fetching users:', error);
+        setLoading(false); // Stop loading if there is an error
       }
     };
 
@@ -38,7 +45,7 @@ const Users: React.FC = () => {
 
   const debouncedSearchTerm = useCallback(debounce((searchValue) => {
     setSearchTerm(searchValue);
-  }, 300), []);
+  }, 500), []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSearchTerm(event.target.value);
@@ -49,33 +56,37 @@ const Users: React.FC = () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+// react loading skeleton
+  if (loading) {
+    return <UserSkeleton count={pageSize} />;
+  }
+
 
   return (
-    <div className="container mt-5">
-  <h1>Users</h1>
-  <div className="mb-3">
-    <input
-      type="text"
-      className="form-control"
-      placeholder="Search by Username, Firstname, Lastname, or Email"
-      onChange={handleSearchChange}
-    />
-    <div className="mt-3">
-      <label htmlFor="pageSize">Items per page:</label>
-      <select
-        id="pageSize"
-        className="form-control"
-        value={pageSize}
-        onChange={(e) => setPageSize(Number(e.target.value))}
-        style={{ width: "auto", display: "inline-block", marginLeft: "10px" }}
-      >
-        {[2, 4, 10, 20].map(size => (
-          <option key={size} value={size}>{size}</option>
-        ))}
-      </select>
-    </div>
-  </div>
-      <div className="table-responsive">
+    <><div className="container mt-5">
+      {/* <Skeleton /> */}
+      <h1>Users</h1>
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by Username, Firstname, Lastname, or Email"
+          onChange={handleSearchChange} />
+        <div className="mt-3">
+          <label htmlFor="pageSize">Items per page:</label>
+          <select
+            id="pageSize"
+            className="form-control"
+            value={pageSize}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+            style={{ width: "auto", display: "inline-block", marginLeft: "10px" }}
+          >
+            {[5, 8, 10, 15].map(size => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+          </select>
+        </div>
+      </div><div className="table-responsive">
         <table className="table">
           <thead>
             <tr>
@@ -87,23 +98,22 @@ const Users: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-              {users.map(user => (
-                <tr key={user._id}>
-                  <td>{user.username}</td>
-                  <td>{user.firstName}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.email}</td>
-                  <td className="user-actions">
-                    <button className="btn btn-primary" onClick={() => setSelectedUserId(user._id)}>Edit Loan</button>
-                    <button className="btn btn-success" onClick={() => setSelectedUserId(user._id)}>Add Loan</button>
-                    <button className="btn btn-danger" onClick={() => setUsers(users.filter(u => u._id !== user._id))}>Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {users.map(user => (
+              <tr key={user._id}>
+                <td>{user.username}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td className="user-actions">
+                  <button className="btn btn-primary" onClick={() => setSelectedUserId(user._id)}>Edit Loan</button>
+                  <button className="btn btn-success" onClick={() => setSelectedUserId(user._id)}>Add Loan</button>
+                  <button className="btn btn-danger" onClick={() => setUsers(users.filter(u => u._id !== user._id))}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-      </div>
-      <nav>
+      </div><nav>
         <ul className="pagination">
           {Array.from({ length: totalPages }, (_, index) => (
             <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
@@ -129,8 +139,8 @@ const Users: React.FC = () => {
           </div>
         </div>
       )}
-      
     </div>
+    </>
   );
 };
 

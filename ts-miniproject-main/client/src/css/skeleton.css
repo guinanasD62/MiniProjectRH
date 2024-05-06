@@ -1,0 +1,41 @@
+.skeleton {
+    background-color: #eee;
+    border-radius: 4px;
+    margin: 4px 0;
+    padding: 2%;
+  }
+  
+  .skeleton-text {
+    height: 16px;
+    width: 100px;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  
+  .skeleton-title {
+    height: 50px;
+    width: 100%;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  .skeleton-btn {
+    display: inline-block;
+    height: 34px;
+    width: 76px;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  .container{
+    padding-top: 8%;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #eee;
+    }
+    50% {
+      background-color: #ddd;
+    }
+    100% {
+      background-color: #eee;
+    }
+  }
+  

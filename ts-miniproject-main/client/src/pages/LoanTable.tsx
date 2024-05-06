@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import debounce from 'debounce';  
+import UserSkeleton from '../feature/skeletonLoanList';
 
 type Loan = {
   username: string;
@@ -17,12 +18,14 @@ const LoanTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true); // Initially true to load data on component mount
 
   const debouncedSetSearchTerm = useRef(debounce((searchValue) => {
     setSearchTerm(searchValue);
-  }, 300)).current; 
+  }, 500)).current; 
 
   useEffect(() => {
+    setLoading(true); // Ensure loading is true when fetch begins
     const fetchLoans = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/loans`, {
@@ -38,19 +41,26 @@ const LoanTable: React.FC = () => {
       } catch (error) {
         console.error('Error fetching loans:', error);
       }
+      setLoading(false); // Set loading false when fetch completes
     };
 
     fetchLoans();
   }, [searchTerm, currentPage]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true); // Set loading true to show skeleton when search term changes
     debouncedSetSearchTerm(event.target.value);
   };
 
   const handlePageChange = (newPage: number) => {
+    setLoading(true); // Set loading true to show skeleton when page changes
     setCurrentPage(newPage);
   };
 
+  if (loading) {
+    return <UserSkeleton count={PAGE_LIMIT}/>; // Using PAGE_LIMIT as count for skeleton items
+  }
+  
   return (
     <div className="container mt-5">
       <h1>Loan Lists</h1>

@@ -5,6 +5,11 @@
     display: flex;
     gap: 10px; /* This will add space between your buttons */
   }
+
+  .container{
+    padding-top: 5%;
+  }
+  /* flex-grow-1 p-3 */
   
   /* Styles to make the buttons have equal width */
   .user-actions button {
@@ -13,7 +18,7 @@
   
   /* Additional styles for table responsiveness and visual improvements */
   .table-responsive {
-    margin-top: 20px;
+    margin-top: 5px;
     overflow-x: auto;
   }
   

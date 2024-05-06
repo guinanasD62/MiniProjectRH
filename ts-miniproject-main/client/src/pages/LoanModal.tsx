@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 const Loan: React.FC<{ userId: string }> = ({ userId }) => {
   const [loanId, setLoanId] = useState<string | null>(null);
@@ -10,6 +11,7 @@ const Loan: React.FC<{ userId: string }> = ({ userId }) => {
   const [isDocumentAvailable, setIsDocumentAvailable] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const username = useSelector((state: RootState) => state.session.username);
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const fetchLoan = async () => {
@@ -23,6 +25,9 @@ const Loan: React.FC<{ userId: string }> = ({ userId }) => {
           setIsDocumentAvailable(loan.isDocumentAvailable);
          
         }
+
+        //use effect
+        
       } catch (error) {
         console.error('Failed to fetch loan details:', error);
       }
@@ -30,6 +35,8 @@ const Loan: React.FC<{ userId: string }> = ({ userId }) => {
 
     fetchLoan();
   }, [userId]);
+
+  // useEffect(()=> navigate("/user"),[])
 
   const handleLoanTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setLoanType(event.target.value);
@@ -84,8 +91,10 @@ const Loan: React.FC<{ userId: string }> = ({ userId }) => {
   
       if (response.status === 200) {
         alert(loanId ? 'Loan details updated successfully!' : 'Loan added successfully!');
-        console.log(response.data);
-        // Perform any additional state updates or redirects here
+        navigate('/users'); // Navigate to '/users' after successful operation
+      //   if (prompt(loanId ? 'Loan details updated successfully!' : 'Loan added successfully!')){
+      //     navigate('/users');
+      //  }
       } else {
         // Handle any other HTTP status codes as needed
       }
